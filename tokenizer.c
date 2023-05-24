@@ -1,16 +1,16 @@
 #include "shell.h"
 
 /**
- * **strtow - splits a string into words. Repeat delimiters are ignored
- * @str: the input string
- * @d: the delimeter string
+ * **strtow - this function divides a string into words.
+ * @str: the given string argument
+ * @d: delimeter argument passed to the function
  * Return: a pointer to an array of strings, or NULL on failure
  */
 
 char **strtow(char *str, char *d)
 {
 	int i, j, k, m, numwords = 0;
-	char **s;
+	char **f;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
@@ -22,8 +22,8 @@ char **strtow(char *str, char *d)
 
 	if (numwords == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
-	if (!s)
+	f = malloc((1 + numwords) * sizeof(char *));
+	if (!f)
 		return (NULL);
 	for (i = 0, j = 0; j < numwords; j++)
 	{
@@ -32,32 +32,32 @@ char **strtow(char *str, char *d)
 		k = 0;
 		while (!is_delim(str[i + k], d) && str[i + k])
 			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		f[j] = malloc((k + 1) * sizeof(char));
+		if (!f[j])
 		{
 			for (k = 0; k < j; k++)
-				free(s[k]);
-			free(s);
+				free(f[k]);
+			free(f);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[j][m] = str[i++];
-		s[j][m] = 0;
+			f[j][m] = str[i++];
+		f[j][m] = 0;
 	}
-	s[j] = NULL;
-	return (s);
+	f[j] = NULL;
+	return (f);
 }
 
 /**
- * **strtow2 - splits a string into words
- * @str: the input string
- * @d: the delimeter
+ * **strtow2 - the function that divides string into words
+ * @str: the given string argument
+ * @d: the delimeter argument
  * Return: a pointer to an array of strings, or NULL on failure
  */
 char **strtow2(char *str, char d)
 {
 	int i, j, k, m, numwords = 0;
-	char **s;
+	char **f;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
@@ -67,8 +67,8 @@ char **strtow2(char *str, char d)
 			numwords++;
 	if (numwords == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
-	if (!s)
+	f = malloc((1 + numwords) * sizeof(char *));
+	if (!f)
 		return (NULL);
 	for (i = 0, j = 0; j < numwords; j++)
 	{
@@ -77,19 +77,19 @@ char **strtow2(char *str, char d)
 		k = 0;
 		while (str[i + k] != d && str[i + k] && str[i + k] != d)
 			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		f[j] = malloc((k + 1) * sizeof(char));
+		if (!f[j])
 		{
 			for (k = 0; k < j; k++)
-				free(s[k]);
-			free(s);
+				free(f[k]);
+			free(f);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[j][m] = str[i++];
-		s[j][m] = 0;
+			f[j][m] = str[i++];
+		f[j][m] = 0;
 	}
-	s[j] = NULL;
+	f[j] = NULL;
 	return (s);
 }
 
