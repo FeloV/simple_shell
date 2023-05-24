@@ -1,27 +1,25 @@
 #include "shell.h"
 
 /**
- * list_len - determines length of linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * list_len - the function that determines no. of linked list
+ * @h: pointer to first node argument
+ * Return: returns size of list
  */
 size_t list_len(const list_t *h)
 {
-	size_t i = 0;
+	size_t k = 0;
 
 	while (h)
 	{
 		h = h->next;
-		i++;
+		k++;
 	}
-	return (i);
+	return (k);
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
- * @head: pointer to first node
- *
+ * list_to_strings - the function that returns an array of strings
+ * @head: pointer to first node argument
  * Return: array of strings
  */
 char **list_to_strings(list_t *head)
@@ -57,13 +55,12 @@ char **list_to_strings(list_t *head)
 
 /**
  * print_list - prints all elements of a list_t linked list
- * @h: pointer to first node
- *
+ * @h: pointer to first node argument
  * Return: size of list
  */
 size_t print_list(const list_t *h)
 {
-	size_t i = 0;
+	size_t k = 0;
 
 	while (h)
 	{
@@ -73,9 +70,9 @@ size_t print_list(const list_t *h)
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
-		i++;
+		k++;
 	}
-	return (i);
+	return (k);
 }
 
 /**

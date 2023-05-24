@@ -1,15 +1,15 @@
 #include "shell.h"
 
 /**
- * get_history_file - gets the history file
- * @info: parameter struct
- *
+ * get_history_file - the function that gets the history file
+ * @info: struct argument
  * Return: allocated string containg history file
  */
 
 char *get_history_file(info_t *info)
 {
-	char *buf, *dir;
+	char *buf;
+	char *dir;
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
@@ -27,7 +27,6 @@ char *get_history_file(info_t *info)
 /**
  * write_history - creates a file, or appends to an existing file
  * @info: the parameter struct
- *
  * Return: 1 on success, else -1
  */
 int write_history(info_t *info)
@@ -54,14 +53,14 @@ int write_history(info_t *info)
 }
 
 /**
- * read_history - reads history from file
- * @info: the parameter struct
- *
- * Return: histcount on success, 0 otherwise
+ * read_history - the function that reads history from file
+ * @info: the struct argument
+ * Return: histcount on success, else 0
  */
 int read_history(info_t *info)
 {
-	int i, last = 0, linecount = 0;
+	int i;
+	int last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
 	char *buf = NULL, *filename = get_history_file(info);

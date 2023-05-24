@@ -1,26 +1,27 @@
 #include "shell.h"
 
 /**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
+ **_strncpy - the function that copies a string
+ *@dest: the destination argument
+ *@src: the source argument
+ *@n: the length of characters to be copied
  *Return: the concatenated string
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i, j;
+	int k;
+	int j;
 	char *s = dest;
 
-	i = 0;
-	while (src[i] != '\0' && i < n - 1)
+	k = 0;
+	while (src[k] != '\0' && k < n - 1)
 	{
-		dest[i] = src[i];
-		i++;
+		dest[k] = src[k];
+		k++;
 	}
-	if (i < n)
+	if (k < n)
 	{
-		j = i;
+		j = k;
 		while (j < n)
 		{
 			dest[j] = '\0';

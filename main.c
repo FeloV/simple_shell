@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * main - entry point
+ * main - the execution of the program starts
  * @ac: arg count
- * @av: arg vector
- *
- * Return: 0 on success, 1 on error
+ * @av: array of string inputted on command line
+ * Return: 0 on success, otherwise 1 on error
  */
 int main(int ac, char **av)
 {
