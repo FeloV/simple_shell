@@ -71,7 +71,7 @@ void _puts(char *str)
 int _putchar(char c)
 {
 	static int k;
-	static char buf[WRITE_BUF_SIZE];
+	static char b[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || k >= WRITE_BUF_SIZE)
 	{
@@ -79,7 +79,7 @@ int _putchar(char c)
 		k = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[k++] = c;
+		b[k++] = c;
 	return (1);
 }
 
