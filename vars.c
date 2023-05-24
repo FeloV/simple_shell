@@ -1,37 +1,36 @@
 #include "shell.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- *
- * Return: 1 if chain delimeter, 0 otherwise
+ * is_chain - the functions that checkes if current char is in buffer
+ * @info: the struct argument
+ * @buf: the character buffer
+ * @p: the address of current position
+ * Return: returns 1 if chain delimeter, else 0
  */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-	size_t j = *p;
+	size_t k = *p;
 
-	if (buf[j] == '|' && buf[j + 1] == '|')
+	if (buf[k] == '|' && buf[k + 1] == '|')
 	{
-		buf[j] = 0;
-		j++;
+		buf[k] = 0;
+		k++;
 		info->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && buf[j + 1] == '&')
+	else if (buf[k] == '&' && buf[k + 1] == '&')
 	{
-		buf[j] = 0;
-		j++;
+		buf[k] = 0;
+		k++;
 		info->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (buf[k] == ';')
 	{
-		buf[j] = 0; /* replace semicolon with null */
+		buf[k] = 0;
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 		return (0);
-	*p = j;
+	*p = k;
 	return (1);
 }
 
@@ -70,18 +69,17 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 }
 
 /**
- * replace_alias - replaces an aliases in the tokenized string
- * @info: the parameter struct
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_alias - the function that replaces an aliases
+ * @info: the struct argument
+ * Return: returns 1 if replaced, else 0
  */
 int replace_alias(info_t *info)
 {
-	int i;
+	int j = 0;
 	list_t *node;
 	char *p;
 
-	for (i = 0; i < 10; i++)
+	while (j < 10)
 	{
 		node = node_starts_with(info->alias, info->argv[0], '=');
 		if (!node)
@@ -94,22 +92,22 @@ int replace_alias(info_t *info)
 		if (!p)
 			return (0);
 		info->argv[0] = p;
+		j++;
 	}
 	return (1);
 }
 
 /**
- * replace_vars - replaces vars in the tokenized string
- * @info: the parameter struct
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_vars - the fucntion that replaces vars
+ * @info: the struct argument
+ * Return: returns 1 if replaced, else 0
  */
 int replace_vars(info_t *info)
 {
 	int i = 0;
 	list_t *node;
 
-	for (i = 0; info->argv[i]; i++)
+	while (info->argv[i])
 	{
 		if (info->argv[i][0] != '$' || !info->argv[i][1])
 			continue;
@@ -134,17 +132,17 @@ int replace_vars(info_t *info)
 			continue;
 		}
 		replace_string(&info->argv[i], _strdup(""));
+		i++;
 
 	}
 	return (0);
 }
 
 /**
- * replace_string - replaces string
- * @old: address of old string
- * @new: new string
- *
- * Return: 1 if replaced, 0 otherwise
+ * replace_string - the function that replaces string
+ * @old: argument that holds address of old string
+ * @new: argument that holds address of new string
+ * Return: returns 1 if replaced, else 0
  */
 int replace_string(char **old, char *new)
 {
