@@ -1,0 +1,4 @@
+#This file mentions the contributors of this simple_shell repository
+
+Mersi Tesfaye <mersi.tesfaye18@gmail.com>
+Felopater Sweha <phelopaterv@gmail.com>
