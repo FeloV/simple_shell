@@ -1,10 +1,8 @@
 #include "shell.h"
 
 /**
- * _myhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _myhistory - the function that displays the history list
+ * @info: Structure argument
  *  Return: Always 0
  */
 int _myhistory(info_t *info)
@@ -14,31 +12,31 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
- *
+ * unset_alias - this function sets alias to string
+ * @info: struct argument
+ * @str: string alias argument
  * Return: Always 0 on success, 1 on error
  */
 int unset_alias(info_t *info, char *str)
 {
-	char *p, c;
-	int ret;
+	char *p;
+	char cs;
+	int r;
 
 	p = _strchr(str, '=');
 	if (!p)
 		return (1);
-	c = *p;
+	cs = *p;
 	*p = 0;
-	ret = delete_node_at_index(&(info->alias),
+	r = delete_node_at_index(&(info->alias),
 		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
-	return (ret);
+	*p = cs;
+	return (r);
 }
 
 /**
- * set_alias - sets alias to string
- * @info: parameter struct
+ * set_alias - the function that sets alias to string
+ * @info: struct argument
  * @str: the string alias
  *
  * Return: Always 0 on success, 1 on error
